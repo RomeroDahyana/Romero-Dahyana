@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+    Estado
+{% endblock title %}
+
+{% block content %}
+
+        
+<main role="main" class="container">
+    {% if estado_list %}      
+        <div class="list-group">            
+        {% for estado in estado_list %}
+            <div class="card">
+              <h5 class="card-header"> {{ estado.name }} </h5>
+            </div>
+        {% endfor %}
+	</div>
+    {% else %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{% static 'app/nomap.jpeg' %}" alt="Sin ubicación">
+        <div class="card-body">
+          <h5 class="card-title">Estadp</h5>
+          <p class="card-text">No hallamos ciudades</p>
+          <a href="{% url 'home' %}" class="btn btn-primary">Inicio</a>
+        </div>
+    </div>
+    {% endif %}
+</main>
+{% endblock content %}
