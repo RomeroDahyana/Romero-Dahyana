@@ -1,0 +1,43 @@
+
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+    Propiedades
+{% endblock title %}
+
+{% block content %}
+
+<!--SUBBARRA DE NAVEGACIÓN--> 
+<main role="main" class="container">
+
+    
+    {% if request.user.is_staff %}
+    <nav class="sub-navbar">
+        
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'propiedad-create' %}">
+                <img src="{% static 'app/neuvo.png' %}" alt="Icono de Crear Propiedad">Nueva  Propiedad</a>
+            </li>
+        </ul>
+    {% endif %}
+    {% if propiedad_list %}      
+        <div class="list-group">            
+        {% for propiedad in propiedad_list %}
+        <li>
+            <div class="card">
+              <h5 class="card-header"> {{ propiedad.name }} {{propiedad.ciudad}} {{propiedad.estado}} $ {{propiedad.costo}} {{ propiedad.image}} </h5>
+            </div>
+        </li>
+        {% endfor %}
+	</div>
+    {% endif %}
+    {% if request.user.is_staff %}
+        <div class="card-body">
+            <a href="{% url 'propiedad-update' propiedad.id %}" class="btn btn-sm btn-primary">Editar propiedad</a>
+         </div>
+    {% endif %}
+    
+</main>
+{% endblock content %}
