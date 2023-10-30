@@ -43,6 +43,22 @@
       background-size: 70% ;
       background-attachment: fixed;
         }
+
+    .login-container {
+      display: flex;
+      align-items: center; 
+      gap: 10px; 
+}     
+    .login-container img {
+        width: 45px; 
+        height: 45px; 
+    }
+
+    .login-text {
+    font-weight: bold; 
+    color: black;
+    font-size: 18px; 
+}
         
     footer {
       background-color: #333; 
@@ -106,7 +122,12 @@
                 </a>
               {% else %}
               <a class="nav-link" href="{% url 'login' %}">
-        <i class="fas fa-sign-in-alt"></i> Login
+                <div class="login-container">
+                  <img src="{% static 'app/login.png' %}" alt="Login"> 
+                  <i class="fas fa-sign-in-alt"></i>
+                  <span class="login-text">Inicio de sesión</span>
+                </div>
+                
       </a>
     {% endif %}
             </li>
