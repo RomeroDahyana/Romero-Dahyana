@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{%block title %}Modificar estado{% endblock %}
+{%block content %}
+{% include 'app/estado_list.html' %}
+<main role="main">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Actualizar estado</button>
+    </form>
+    
+</main>
+{%endblock%}

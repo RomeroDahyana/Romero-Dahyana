@@ -1,0 +1,19 @@
+
+{% load static %}
+{%block title %}Nueva propiedad{% endblock %}
+{%block content %}
+{% include 'app/propiedad_list.html' %}
+<main role="main">
+  <div class="container">
+    <div class="row mb-5 mt-3">
+            <form action="" method="post" enctype='multipart/form-data'>{% csrf_token %}
+                  {{ form.as_p }} 
+                               
+                  <input type="submit" class="btn btn-sm btn-empresarial" style="background-color: grey; color: black; border: 0.5px solid grey;" value="Nueva propiedad" />                 
+            </form>
+        
+          
+    </div>
+  </div>
+</main>
+{%endblock%}
