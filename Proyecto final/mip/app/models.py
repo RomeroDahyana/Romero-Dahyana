@@ -39,7 +39,6 @@ class Estado(models.Model):
 
 class Operacion (models.Model):
     name = models.CharField(verbose_name = "Operación", max_length=50)
-
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
@@ -58,7 +57,7 @@ class Propiedad(models.Model):
     updated = models.DateTimeField(auto_now=True)
     description = models.TextField(verbose_name="Descripción de la propiedad") 
     estado = models.ForeignKey(Estado, verbose_name="Estado", on_delete=models.CASCADE)
-    ciudad = models.ManyToManyField(Ciudad, verbose_name="Ciudad")
+    ciudad = models.ForeignKey(Ciudad, verbose_name="Ciudad",  on_delete=models.CASCADE, default=1)
     operacion = models.ForeignKey(Operacion, verbose_name="Tipo de operación", on_delete=models.CASCADE)
     image = models.ImageField(upload_to="alquilerimg", null=True, blank=True, verbose_name="Portada")
     costo = models.DecimalField(verbose_name="Costo", null=False, blank=False, max_digits=10,decimal_places=2)
