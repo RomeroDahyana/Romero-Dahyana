@@ -6,26 +6,38 @@
 {% endblock title %}
 
 {% block content %}
-
-{% include 'app/includes/app_menu.html' %}
 <main role="main" class="container">
+    {% if request.user.is_staff %}
+        
+        <div style="display: flex; justify-content: flex-end;">
+            <a href="{% url 'ciudad-create' %}" class="btn btn-sm btn-empresarial" style="background-color: grey; color: black; border: 0.5px solid grey;">
+                Añadir nueva ciudad</a>
+        </div>
+    {% endif %}
+    <br>
     {% if ciudad_list %}      
-        <div class="list-group">            
+    <div class="list-group">            
         {% for ciudad in ciudad_list %}
             <div class="card">
-              <h5 class="card-header"> {{ ciudad.name }} </h5>
+                <div class="flex-container">
+                    <div class="title">Nombre:</div>
+                    <div>{{ ciudad.name }}</div>
+                </div>
+                <div class="flex-container">
+                    <div class="title">Código Postal:</div>
+                    <div>{{ ciudad.codigo_postal }}</div>
+                </div>
+                {% if request.user.is_staff %}
+                <div class="card-body">
+                    <a href="{% url 'ciudad-actualizar' ciudad.id %}" class="btn btn-sm btn-empresarial" style="background-color: grey; color: black; border: 0.5px solid grey;">Editar</a>
+                    <a href="{% url 'ciudad-eliminar' ciudad.id %}"class="btn btn-sm btn-empresarial" style="background-color: grey; color: black; border: 0.5px solid grey;">Eliminar</a>
+                </div>
+                {% endif %}
             </div>
         {% endfor %}
-	    </div>
-    {% else %}
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'app/nomap.jpeg' %}" alt="Sin ubicación">
-        <div class="card-body">
-            <h5 class="card-title">Ciudad</h5>
-            <p class="card-text">No hallamos ciudades</p>
-            <a href="{% url 'home' %}" class="btn btn-primary">Inicio</a>
-        </div>
     </div>
+{% else %}
+        
     {% endif %}
 
 </main>

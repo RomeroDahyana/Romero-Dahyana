@@ -11,33 +11,40 @@
 <!--SUBBARRA DE NAVEGACIÓN--> 
 <main role="main" class="container">
 
-    
     {% if request.user.is_staff %}
-    <nav class="sub-navbar">
-        
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'propiedad-create' %}">
-                <img src="{% static 'app/neuvo.png' %}" alt="Icono de Crear Propiedad">Nueva  Propiedad</a>
-            </li>
-        </ul>
+    <div style="display: flex; justify-content: flex-end;">
+        <a href="{% url 'propiedad-create' %}" class="btn btn-sm btn-empresarial" style="background-color: grey; color: black; border: 0.5px solid grey;">
+            Añadir propiedad
+        </a>
+    </div>
+     
     {% endif %}
+
+    <br>
     {% if propiedad_list %}      
         <div class="list-group">            
         {% for propiedad in propiedad_list %}
         <li>
             <div class="card">
-              <h5 class="card-header"> {{ propiedad.name }} {{propiedad.ciudad}} {{propiedad.estado}} $ {{propiedad.costo}} {{ propiedad.image}} </h5>
+              <h5 class="card-header"> {{ propiedad.name }} | {{propiedad.ciudad}} | {{propiedad.estado}} | $ {{propiedad.costo}}  </h5>
+              {% if propiedad.image %}
+                <h5><img class="rounded float-left img-thumbnail img-fluid"  width="164" height="96" src="{{propiedad.image.url}}" alt="{{propiedad.image.url}}"/> </h5>
+                {% else %}
+            <img class="rounded float-left img-thumbnail img-fluid"  width="164" height="96" src="{% static 'app/no-house.png' %}">
+            {% endif  %}             
             </div>
+            {% if request.user.is_staff %} 
+                <div class="card-body">
+                    <a href="{% url 'propiedad-actualizar' propiedad.id %}" class="btn btn-sm btn-empresarial" style="background-color: grey; color: black; border: 0.5px solid grey;">Editar</a>
+                    <a href="{% url 'propiedad-eliminar' propiedad.id %}" class="btn btn-sm btn-empresarial" style="background-color: grey; color: black; border: 0.5px solid grey;">Eliminar</a>
+                </div>
+                {% endif %}
         </li>
-        {% endfor %}
+
 	</div>
+    {% endfor %}
     {% endif %}
-    {% if request.user.is_staff %}
-        <div class="card-body">
-            <a href="{% url 'propiedad-update' propiedad.id %}" class="btn btn-sm btn-primary">Editar propiedad</a>
-         </div>
-    {% endif %}
+   
     
 </main>
 {% endblock content %}
