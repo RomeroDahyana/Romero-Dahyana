@@ -1,12 +1,13 @@
-{% extends 'app/base.html' %}
+
 {% load static %}
-{%block title %}Eliminar ciudad{% endblock %}
+{%block title %}Eliminar estado{% endblock %}
 {%block content %}
+{% include 'app/estado_list.html' %}
 <main role="main">
   <div class="container">
     <div class="row mb-5 mt-3">
       <form method="post">{% csrf_token %}
-        <p>Esta seguro que quiere eliminar la ciudad?"{{ object }}"?</p>
+        <p>Esta seguro que quiere eliminar  "{{ object }}"?</p>
         {% comment %} {{ form }} {% endcomment %}
         <input type="submit" value="Confirmar">
       </form>
