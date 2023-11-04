@@ -11,3 +11,13 @@ con una conexión a Internet) y listar y verificar las propiedades que la inmobi
 -- Super usuario --
 Usuario: admin
 Contraseña: *python
+
+-- Librerías --
+Se utilizaron:
+ * Django como framework de desarrollo
+ * Pillow para la gestión de imagenes
+
+Por motivos de fuerza mayor no pudieron ser utilizadas otras librerías que hubiesen enriquecido el proyecto.
+
+-- Link a video de presentación --
+https://drive.google.com/file/d/1Szid6yF_9rHJMTAH-NSvnNfrsc06mJpI/view?usp=sharing
